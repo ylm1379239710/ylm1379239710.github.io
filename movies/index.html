@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>电影 | OneMe.Log</title><meta name="author" content="Lyle"><meta name="copyright" content="Lyle"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="已看   想看          首页   上一页   1&#x2F;1   下一页   尾页   &#x2F;&#x2F; 统一初始化函数（包含数据渲染和事件绑定） function initMoviePage() {   &#x2F;&#x2F; 集中定义电影数据（新增主演字段，修改豆瓣链接位置）   const MOVIE_DATA &#x3D; {     watched: [  &#x2F;&#x2F; 已看电影数据       {         cove">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>电影 | OneMe.Log</title><meta name="author" content="Lyle"><meta name="copyright" content="Lyle"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="已看电影   想看电影           首页   上一页   1&#x2F;1   下一页   尾页    &#x2F;&#x2F; 集中定义电影数据（维护时只需修改此处） const MOVIE_DATA &#x3D; {   watched: [  &#x2F;&#x2F; 已看电影数据（示例数据，可扩展）     {       cover: &quot;https:&#x2F;&#x2F;img9.doubanio.com&#x2F;view&#x2F;photo&#x2F;s_ratio_po">
 <meta property="og:type" content="website">
 <meta property="og:title" content="电影">
 <meta property="og:url" content="https://ylm1379239710.github.io/movies/index.html">
 <meta property="og:site_name" content="OneMe.Log">
-<meta property="og:description" content="已看   想看          首页   上一页   1&#x2F;1   下一页   尾页   &#x2F;&#x2F; 统一初始化函数（包含数据渲染和事件绑定） function initMoviePage() {   &#x2F;&#x2F; 集中定义电影数据（新增主演字段，修改豆瓣链接位置）   const MOVIE_DATA &#x3D; {     watched: [  &#x2F;&#x2F; 已看电影数据       {         cove">
+<meta property="og:description" content="已看电影   想看电影           首页   上一页   1&#x2F;1   下一页   尾页    &#x2F;&#x2F; 集中定义电影数据（维护时只需修改此处） const MOVIE_DATA &#x3D; {   watched: [  &#x2F;&#x2F; 已看电影数据（示例数据，可扩展）     {       cover: &quot;https:&#x2F;&#x2F;img9.doubanio.com&#x2F;view&#x2F;photo&#x2F;s_ratio_po">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://ylm1379239710.github.io/img/avatar.jpg">
 <meta property="article:published_time" content="2025-05-11T08:21:06.000Z">
-<meta property="article:modified_time" content="2025-05-11T10:38:13.623Z">
+<meta property="article:modified_time" content="2025-05-11T10:48:47.494Z">
 <meta property="article:author" content="Lyle">
 <meta property="article:tag" content="OneMe,Log">
 <meta name="twitter:card" content="summary">
@@ -146,14 +146,15 @@
   pageType: 'page'
 }</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page type-movies" id="body-wrap"><header class="not-home-page fixed" id="page-header" style="background-image: url(/img/head.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">OneMe.Log</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">电影</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><!-- 选项卡切换按钮 -->
 <div class="movie-tabs">
-  <button class="tab-btn active" data-target="watched">已看</button>
-  <button class="tab-btn" data-target="to-watch">想看</button>
+  <button class="tab-btn active" data-target="watched">已看电影</button>
+  <button class="tab-btn" data-target="to-watch">想看电影</button>
 </div>
 
 <!-- 电影列表容器（动态渲染） -->
 <div class="movie-container" id="watched"></div>
 <div class="movie-container" id="to-watch" style="display: none;"></div>
-<!-- 新增：分页控件容器 -->
+
+<!-- 分页控件 -->
 <div class="pagination-container">
   <button class="page-btn" id="first-page">首页</button>
   <button class="page-btn" id="prev-page">上一页</button>
@@ -161,93 +162,255 @@
   <button class="page-btn" id="next-page">下一页</button>
   <button class="page-btn" id="last-page">尾页</button>
 </div>
+
 <script>
-// 统一初始化函数（包含数据渲染和事件绑定）
-function initMoviePage() {
-  // 集中定义电影数据（新增主演字段，修改豆瓣链接位置）
-  const MOVIE_DATA = {
-    watched: [  // 已看电影数据
-      {
-        cover: "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2545472803.webp",
-        title: "流浪地球",
-        doubanLink: "https://movie.douban.com/subject/26266893/",
-        year: "2019",
-        director: "郭帆",
-        genre: "科幻 / 冒险 / 灾难",
-        cast: " 吴京 / 屈楚萧 / 李光洁 / 吴孟达 / 赵今麦 / 隋凯 / 屈菁菁 / 张亦驰 / 杨皓宇 / 阿尔卡基·沙罗格拉茨基 / 李虹辰 / 杨轶 / 姜志刚 / 张欢 / 雷佳音 / 宁浩 / 刘慈欣 / 郭京飞 / 王智 / 张子贤 / 路阳 / 张宁 / 张小北 / 饶晓志 / 陶珞依 / 吴晓亮 / 龚格尔 / 郭帆",  // 新增主演信息
-        review: "国产科幻里程碑！伏笔完美铺垫，数字生命线的展开充满哲学思考。"
-      }
-    ],
-    toWatch: [  // 想看电影数据
-      {
-        cover: "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2917556416.webp",
-        title: "唐探1900",
-        doubanLink: "https://movie.douban.com/subject/36282639/",
-        year: "2025",
-        director: "陈思诚 / 戴墨",
-        genre: "喜剧 / 动作 / 悬疑",
-        cast: " 王宝强 / 刘昊然 / 周润发 / 白客 / 张新成 / 岳云鹏 / 约翰·库萨克 / 安娜 / 太保 / 王雨甜 / 张傲月 / 柯国庆 / 海宇翔 / 肖恩·科恩克 / 暗真 / 魏翔 / 尹正 / 奚美娟 / 李诚儒 / 小沈阳 / 冯文娟 / 桑平 / 曹瑞 / 王皓 / 陈创 / 蒋易 / 李宛妲",  // 新增主演信息
-        reason: "听说烂了，期待能看！"
-      }
-    ]
+// 集中定义电影数据（维护时只需修改此处）
+const MOVIE_DATA = {
+  watched: [  // 已看电影数据（示例数据，可扩展）
+    {
+      cover: "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2860352333.webp",
+      title: "《流浪地球2》",
+      doubanLink: "https://movie.douban.com/subject/35125290/",
+      year: "2023",
+      director: "郭帆",
+      genre: "科幻/灾难",
+      review: "国产科幻里程碑！前作伏笔完美铺垫，数字生命线的展开充满哲学思考。"
+    },
+    {
+      cover: "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2894903113.webp",
+      title: "《奥本海默》",
+      doubanLink: "https://movie.douban.com/subject/35282747/",
+      year: "2023",
+      director: "克里斯托弗·诺兰",
+      genre: "传记/历史",
+      review: "诺兰叙事顶尖，黑白与彩色镜头区分现实与回忆，基里安·墨菲演技炸裂。"
+    }
+    // 可添加更多数据（超过10条触发分页）
+  ],
+  toWatch: [  // 想看电影数据（示例数据，可扩展）
+    {
+      cover: "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2894903113.webp",
+      title: "《沙丘2》",
+      doubanLink: "https://movie.douban.com/subject/35282747/",
+      year: "2024（待上映）",
+      director: "丹尼斯·维伦纽瓦",
+      genre: "科幻/史诗",
+      reason: "第一部世界观惊艳，期待第二部星际战争和保罗复仇线。"
+    },
+    {
+      cover: "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2894903113.webp",
+      title: "《蜘蛛侠：纵横宇宙2》",
+      doubanLink: "https://movie.douban.com/subject/35282747/",
+      year: "2024（待上映）",
+      director: "乔伊姆·多斯·桑托斯",
+      genre: "动画/超级英雄",
+      reason: "第一部跨维度动画风格艺术，期待解答格温与迈尔斯的矛盾。"
+    }
+    // 可添加更多数据（超过10条触发分页）
+  ]
+};
+
+// 分页状态管理
+const paginationState = {
+  watched: { currentPage: 1, totalPages: 1 },
+  toWatch: { currentPage: 1, totalPages: 1 }
+};
+
+// 分页函数：将数据按每页10条分割
+function paginateData(data, pageSize = 10) {
+  const totalPages = Math.ceil(data.length / pageSize);
+  return {
+    totalPages,
+    getPage: (page) => data.slice((page - 1) * pageSize, page * pageSize)
   };
-  // 分页状态管理（新增）
-  const paginationState = {
-    watched: { currentPage: 1, totalPages: 1 },  // 已看电影分页状态
-    toWatch: { currentPage: 1, totalPages: 1 }   // 想看电影分页状态
-  };
+}
 
-<p>  &#x2F;&#x2F; 分页函数：将数据按每页10条分割（新增）<br>  function paginateData(data, pageSize &#x3D; 10) {<br>    const totalPages &#x3D; Math.ceil(data.length &#x2F; pageSize);<br>    return {<br>      totalPages,<br>      getPage: (page) &#x3D;&gt; data.slice((page - 1) * pageSize, page * pageSize)<br>    };<br>  }</p>
-<p>  &#x2F;&#x2F; 动态渲染电影列表的函数（修改）<br>  function renderMovieList(targetType) {<br>    const container &#x3D; $(<code>#$&#123;targetType&#125;</code>);<br>    container.empty();</p>
-<pre><code>// 获取当前类型的分页状态
-const state = paginationState[targetType];
-const movies = targetType === &#39;watched&#39; ? MOVIE_DATA.watched : MOVIE_DATA.toWatch;
-const &#123; totalPages, getPage &#125; = paginateData(movies);
+// 动态渲染电影列表的函数
+function renderMovieList(targetType) {
+  const container = $(`#${targetType}`);
+  container.empty();
 
-// 更新分页状态
-state.totalPages = totalPages;
-state.currentPage = Math.min(Math.max(state.currentPage, 1), totalPages); // 限制页码范围
+  const state = paginationState[targetType];
+  const movies = targetType === 'watched' ? MOVIE_DATA.watched : MOVIE_DATA.toWatch;
+  const { totalPages, getPage } = paginateData(movies);
 
-// 渲染当前页数据
-const currentPageData = getPage(state.currentPage);
-currentPageData.forEach(movie =&gt; &#123; /* ...原有HTML生成逻辑... */ &#125;);
+  // 限制页码范围
+  state.totalPages = totalPages;
+  state.currentPage = Math.min(Math.max(state.currentPage, 1), totalPages);
 
-// 更新分页显示（新增）
-$(&#39;.current-page&#39;).text(`$&#123;state.currentPage&#125;/$&#123;state.totalPages&#125;`);
-// 控制按钮禁用状态（如首页/上一页在第1页时禁用）
-$(&#39;#first-page, #prev-page&#39;).prop(&#39;disabled&#39;, state.currentPage === 1);
-$(&#39;#last-page, #next-page&#39;).prop(&#39;disabled&#39;, state.currentPage === state.totalPages);
-</code></pre>
-<p>  }</p>
-<p>  &#x2F;&#x2F; 初始化渲染已看电影（修改）<br>  renderMovieList(‘watched’);</p>
-<p>  &#x2F;&#x2F; 选项卡切换逻辑（修改：切换时重置分页状态）<br>  $(‘.tab-btn’).off(‘click’).on(‘click’, function() {<br>    const target &#x3D; $(this).data(‘target’);<br>    &#x2F;&#x2F; 重置目标类型的当前页为1<br>    paginationState[target].currentPage &#x3D; 1;<br>    &#x2F;&#x2F; 切换显示并渲染<br>    $(‘.movie-container’).hide();<br>    $(<code>#$&#123;target&#125;</code>).show();<br>    $(‘.tab-btn’).removeClass(‘active’);<br>    $(this).addClass(‘active’);<br>    renderMovieList(target);<br>  });</p>
-<p>  &#x2F;&#x2F; 分页按钮点击事件（新增）<br>  $(‘.page-btn’).on(‘click’, function() {<br>    const currentType &#x3D; $(‘.tab-btn.active’).data(‘target’); &#x2F;&#x2F; 获取当前激活的选项卡类型<br>    const state &#x3D; paginationState[currentType];<br>    const action &#x3D; $(this).attr(‘id’);</p>
-<pre><code>// 根据按钮类型更新当前页
-switch (action) &#123;
-  case &#39;first-page&#39;: state.currentPage = 1; break;
-  case &#39;prev-page&#39;: state.currentPage--; break;
-  case &#39;next-page&#39;: state.currentPage++; break;
-  case &#39;last-page&#39;: state.currentPage = state.totalPages; break;
-&#125;
+  // 渲染当前页数据
+  const currentPageData = getPage(state.currentPage);
+  currentPageData.forEach(movie => {
+    const movieHTML = `
+      <div class="movie-item">
+        <img src="${movie.cover}" alt="${movie.title}海报" class="movie-cover">
+        <div class="movie-info">
+          <h3>${movie.title}<a href="${movie.doubanLink}" target="_blank" class="douban-link">豆瓣链接</a></h3>
+          <ul class="movie-info-list">
+            <li>年份：${movie.year}</li>
+            <li>导演：${movie.director}</li>
+            <li>类型：${movie.genre}</li>
+          </ul>
+          <p class="${targetType === 'watched' ? 'review' : 'reason'}">
+            ${targetType === 'watched' ? movie.review : movie.reason}
+          </p>
+        </div>
+      </div>
+    `;
+    container.append(movieHTML);
+  });
 
-renderMovieList(currentType); // 重新渲染
-</code></pre>
-<p>  });<br>}</p>
-<p>&#x2F;&#x2F; 兼容首次加载和 PJAX 刷新（保持不变）<br>document.addEventListener(‘DOMContentLoaded’, initMoviePage);<br>$(document).on(‘pjax:success’, initMoviePage);<br></script></p>
+  // 更新分页显示
+  $('.current-page').text(`${state.currentPage}/${state.totalPages}`);
+  $('#first-page, #prev-page').prop('disabled', state.currentPage === 1);
+  $('#last-page, #next-page').prop('disabled', state.currentPage === state.totalPages);
+}
+
+// 初始化渲染已看电影
+renderMovieList('watched');
+
+// 选项卡切换逻辑
+$('.tab-btn').on('click', function() {
+  const target = $(this).data('target');
+  $('.movie-container').hide();
+  $(`#${target}`).show();
+  $('.tab-btn').removeClass('active');
+  $(this).addClass('active');
+  // 切换时重置当前页为1
+  paginationState[target].currentPage = 1;
+  renderMovieList(target);
+});
+
+// 分页按钮点击事件
+$('.page-btn').on('click', function() {
+  const currentType = $('.tab-btn.active').data('target');
+  const state = paginationState[currentType];
+  const action = $(this).attr('id');
+
+  switch (action) {
+    case 'first-page': state.currentPage = 1; break;
+    case 'prev-page': state.currentPage--; break;
+    case 'next-page': state.currentPage++; break;
+    case 'last-page': state.currentPage = state.totalPages; break;
+  }
+
+  renderMovieList(currentType);
+});
+
+// 兼容 PJAX 无刷新加载
+document.addEventListener('DOMContentLoaded', () => renderMovieList('watched'));
+$(document).on('pjax:success', () => renderMovieList('watched'));
+</script>
+
 <style>
-/* 样式保持不变 */
-.movie-tabs { display: flex; gap: 1rem; margin: 2rem 0; }
-.tab-btn { padding: 0.8rem 1.5rem; border: none; border-radius: 6px; background: #f0f0f0; cursor: pointer; transition: all 0.3s; }
-.tab-btn.active { background: #ad7a86; color: white; }
-.movie-container { margin: 2rem 0; }
-.movie-item { display: flex; gap: 2rem; background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
-.movie-cover { width: 180px; height: 270px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
-.movie-info { flex: 1; }
-.movie-info h3 { margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.4rem; }
-.movie-info h3 a { color: #2c3e50; text-decoration: none; }  /* 可选：优化链接颜色 */
-.movie-info h3 a:hover { color: #ad7a86; text-decoration: underline; }  /* 可选：添加悬停效果 */
-.movie-info-list { list-style: none; padding: 0; margin: 0 0 1rem 0; color: #666; }
-.review, .reason { margin: 0; color: #333; line-height: 1.6; }
+/* 原有样式保持不变 */
+.movie-tabs { 
+  display: flex; 
+  gap: 1rem; 
+  margin: 2rem 0; 
+}
+.tab-btn { 
+  padding: 0.8rem 1.5rem; 
+  border: none; 
+  border-radius: 6px; 
+  background: #f0f0f0; 
+  cursor: pointer; 
+  transition: all 0.3s; 
+}
+.tab-btn.active { 
+  background: #ad7a86; 
+  color: white; 
+}
+.movie-container { 
+  margin: 2rem 0; 
+}
+.movie-item { 
+  display: flex; 
+  gap: 2rem; 
+  background: white; 
+  border-radius: 12px; 
+  padding: 1.5rem; 
+  margin-bottom: 2rem; 
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05); 
+}
+.movie-cover { 
+  width: 180px; 
+  height: 270px; 
+  object-fit: cover; 
+  border-radius: 8px; 
+  flex-shrink: 0; 
+}
+.movie-info { 
+  flex: 1; 
+}
+.movie-info h3 { 
+  margin: 0 0 1rem 0; 
+  color: #2c3e50; 
+  font-size: 1.4rem; 
+}
+.movie-info-list { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0 0 1rem 0; 
+  color: #666; 
+}
+.review, .reason { 
+  margin: 0; 
+  color: #333; 
+  line-height: 1.6; 
+}
+
+/* 新增：分页控件美化样式 */
+.pagination-container {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  justify-content: center; /* 居中显示 */
+  align-items: center;
+}
+
+.page-btn {
+  padding: 0.6rem 1.2rem; /* 增大内边距，更饱满 */
+  border: none;
+  border-radius: 8px; /* 更大的圆角 */
+  background: #ad7a86; /* 主题色 */
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(173, 122, 134, 0.2); /* 轻微阴影 */
+}
+
+.page-btn:hover {
+  background: #9b6a75; /* 悬停时加深颜色 */
+  box-shadow: 0 4px 8px rgba(173, 122, 134, 0.3); /* 阴影加重 */
+}
+
+.page-btn:disabled {
+  background: #e5e7eb; /* 禁用时灰色 */
+  color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none; /* 移除阴影 */
+}
+
+.current-page {
+  color: #666;
+  font-size: 1rem;
+  padding: 0 0.5rem; /* 与按钮间距 */
+}
+
+/* 豆瓣链接样式（优化） */
+.douban-link {
+  margin-left: 0.5rem;
+  color: #ad7a86;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.douban-link:hover {
+  color: #9b6a75;
+  text-decoration: underline;
+}
 </style></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Lyle</div><div class="author-info-description">您好，欢迎来到Lyle的blog，我是您第114514次人格系统重装后残留的唯一非僵尸进程，专业承接：🔨 日常脑洞塌方维修 | 🧬 三观版本回滚 | 💡 深夜哲学溢出急救 | 🧯 社恐缓存清理</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/ylm1379239710" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1379239710@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/11/%E5%9F%BA%E4%BA%8ECLIP-ReID%E5%92%8CYOLOv8%E7%9A%84%E8%A1%8C%E4%BA%BA%E6%A3%80%E6%B5%8B%E4%B8%8E%E9%87%8D%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/" title="基于CLIP-ReID和YOLOv8的行人检测与重识别系统"><img src="/img/cover_1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于CLIP-ReID和YOLOv8的行人检测与重识别系统"/></a><div class="content"><a class="title" href="/2025/05/11/%E5%9F%BA%E4%BA%8ECLIP-ReID%E5%92%8CYOLOv8%E7%9A%84%E8%A1%8C%E4%BA%BA%E6%A3%80%E6%B5%8B%E4%B8%8E%E9%87%8D%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/" title="基于CLIP-ReID和YOLOv8的行人检测与重识别系统">基于CLIP-ReID和YOLOv8的行人检测与重识别系统</a><time datetime="2025-05-10T16:00:00.000Z" title="Created 2025-05-11 00:00:00">2025-05-11</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>Categories</span>
@@ -255,7 +418,7 @@ renderMovieList(currentType); // 重新渲染
           </div>
           <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%87%AA%E7%A0%94%E8%BD%AF%E4%BB%B6/"><span class="card-category-list-name">自研软件</span><span class="card-category-list-count">1</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/%E8%A1%8C%E4%BA%BA%E6%A3%80%E6%B5%8B/" style="font-size: 1.1em; color: #999">行人检测</a> <a href="/tags/YOLOv8/" style="font-size: 1.1em; color: #999">YOLOv8</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">系统</a> <a href="/tags/CLIP-ReID/" style="font-size: 1.1em; color: #999">CLIP-ReID</a> <a href="/tags/%E8%A1%8C%E4%BA%BA%E9%87%8D%E8%AF%86%E5%88%AB/" style="font-size: 1.1em; color: #999">行人重识别</a></div></div><div class="card-widget card-archives">
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/YOLOv8/" style="font-size: 1.1em; color: #999">YOLOv8</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">系统</a> <a href="/tags/%E8%A1%8C%E4%BA%BA%E6%A3%80%E6%B5%8B/" style="font-size: 1.1em; color: #999">行人检测</a> <a href="/tags/CLIP-ReID/" style="font-size: 1.1em; color: #999">CLIP-ReID</a> <a href="/tags/%E8%A1%8C%E4%BA%BA%E9%87%8D%E8%AF%86%E5%88%AB/" style="font-size: 1.1em; color: #999">行人重识别</a></div></div><div class="card-widget card-archives">
     <div class="item-headline">
       <i class="fas fa-archive"></i>
       <span>Archives</span>
@@ -274,7 +437,7 @@ renderMovieList(currentType); // 重新渲染
         </li>
       
     </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-05-11T10:38:19.197Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/head.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2025 By Lyle</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><div id="global-aplayer" class="aplayer no-destroy" data-id="602323472" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" data-volume="0.2"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script>(() => {
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-05-11T10:49:05.248Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/head.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2025 By Lyle</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><div id="global-aplayer" class="aplayer no-destroy" data-id="602323472" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" data-volume="0.2"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script>(() => {
   const destroyAplayer = () => {
     if (window.aplayers) {
       for (let i = 0; i < window.aplayers.length; i++) {
