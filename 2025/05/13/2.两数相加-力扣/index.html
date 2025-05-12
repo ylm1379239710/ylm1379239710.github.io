@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2.两数相加 - 力扣 | OneMe.Log</title><meta name="author" content="Lyle"><meta name="copyright" content="Lyle"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="力扣算法题Day2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.两数相加 - 力扣">
+<meta property="og:url" content="https://ylm1379239710.github.io/2025/05/13/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0-%E5%8A%9B%E6%89%A3/index.html">
+<meta property="og:site_name" content="OneMe.Log">
+<meta property="og:description" content="力扣算法题Day2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ylm1379239710.github.io/img/cover_2.png">
+<meta property="article:published_time" content="2025-05-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-12T13:42:11.223Z">
+<meta property="article:author" content="Lyle">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="力扣">
+<meta property="article:tag" content="递归">
+<meta property="article:tag" content="链表">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ylm1379239710.github.io/img/cover_2.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2.两数相加 - 力扣",
+  "url": "https://ylm1379239710.github.io/2025/05/13/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0-%E5%8A%9B%E6%89%A3/",
+  "image": "https://ylm1379239710.github.io/img/cover_2.png",
+  "datePublished": "2025-05-12T16:00:00.000Z",
+  "dateModified": "2025-05-12T13:42:11.223Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Lyle",
+      "url": "https://ylm1379239710.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ylm1379239710.github.io/2025/05/13/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0-%E5%8A%9B%E6%89%A3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2.两数相加 - 力扣',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa fa-gamepad"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-thumbs-up"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tools/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/resources/"><i class="fa-fw fas fa-file"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/top_img_2.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">OneMe.Log</span></a><a class="nav-page-title" href="/"><span class="site-name">2.两数相加 - 力扣</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa fa-gamepad"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-thumbs-up"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tools/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/resources/"><i class="fa-fw fas fa-file"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">2.两数相加 - 力扣</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-12T16:00:00.000Z" title="发表于 2025-05-13 00:00:00">2025-05-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-12T13:42:11.223Z" title="更新于 2025-05-12 21:42:11">2025-05-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>力扣算法题Day2</p>
+<hr>
+<p>**题目：**给你两个 <strong>非空</strong> 的链表，表示两个非负的整数。它们每位数字都是按照 <strong>逆序</strong> 的方式存储的，并且每个节点只能存储 <strong>一位</strong> 数字。</p>
+<p>请你将两个数相加，并以相同形式返回一个表示和的链表。</p>
+<p>你可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="C:\Users\13792\Desktop\md\images\新建文件夹\4b625b8fa9f840762f6bdc8e46bf1e37.png" alt="4b625b8fa9f840762f6bdc8e46bf1e37"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = [2,4,3], l2 = [5,6,4]</span><br><span class="line">输出：[7,0,8]</span><br><span class="line">解释：342 + 465 = 807.</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = [0], l2 = [0]</span><br><span class="line">输出：[0]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]</span><br><span class="line">输出：[8,9,9,9,0,0,0,1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>每个链表中的节点数在范围 <code>[1, 100]</code> 内</li>
+<li><code>0 &lt;= Node.val &lt;= 9</code></li>
+<li>题目数据保证列表表示的数字不含前导零</li>
+</ul>
+<p><strong>解题思路：</strong></p>
+<p>首先数字是由链表逆序存储，那遍历这个链表的时候就是从最后一位开始遍历，这和我们一样我们计算两数相加计算时也是从最后一位开始。</p>
+<p>相加时分两种情况：等长和不等长。</p>
+<p>等长时两个数获取位次的次数也就是next的次数是一样的。</p>
+<p>不等长时一个数位次获取完之后就停止获取下一位。另一个数继续获取下一位。</p>
+<p>总结下来就是循环看数字还有没有下一位。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">while (p || q) &#123;</span><br><span class="line">	if (p) &#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    if (q) &#123;</span><br><span class="line">        q = q-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>那我们就先把两个数字的最后一位相加，如果</p>
+<p>19&gt;两数之和&gt;9，</p>
+<p>那么有进位1，两数之和肯定大于等于10或者小于等于18，如果两数之和&lt;10，那么没有进位或可以当成进位0，</p>
+<p>进位可以直接让两数之和&#x2F;10获得进位（C++中&#x2F;运算符的特性），当前位余数为两数之和%10</p>
+<p>进位需要在下一位运算时加上，后面的位次循环。</p>
+<p>最后一位相加时如果有进位需要单独开一个节点存储进位1。</p>
+<p>那么进位是从刚开始到最后都是需要的，可以初始化为0。</p>
+<p>那么我们可以用下面的代码来表示上面的逻辑。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode *p = l1, *q = l2;</span><br><span class="line">        ListNode *l = <span class="literal">nullptr</span>, *r = l; <span class="comment">// l代表第一个结点。</span></span><br><span class="line">        <span class="type">int</span> t = <span class="number">0</span>;<span class="comment">//初始化进位</span></span><br><span class="line">        <span class="keyword">while</span> (p || q) &#123; <span class="comment">// 判断是否两个数是否遍历完毕</span></span><br><span class="line">            <span class="keyword">if</span> (p) &#123;     <span class="comment">// 遍历l1</span></span><br><span class="line">                t +=</span><br><span class="line">                    p-&gt;val; <span class="comment">// 进位为1或者0，每次计算同位次之和直接加上进位就可以</span></span><br><span class="line">                p = p-&gt;next; <span class="comment">// 指向下一位次</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (q) &#123; <span class="comment">// 遍历l2</span></span><br><span class="line">                t +=</span><br><span class="line">                    q-&gt;val; <span class="comment">// 进位为1或者0，每次计算同位次之和直接加上进位就可以</span></span><br><span class="line">                q = q-&gt;next; <span class="comment">// 指向下一位次</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 经过上面的过程当前位次和计算完毕</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 接下来创建结点存储数值</span></span><br><span class="line">            <span class="keyword">if</span> (!l) &#123;</span><br><span class="line">                l = r = <span class="keyword">new</span> <span class="built_in">ListNode</span>(</span><br><span class="line">                    t % <span class="number">10</span>); <span class="comment">// l为null，代表要创建第一个节点，同时让l = r</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                r-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(t % <span class="number">10</span>); <span class="comment">// 尾插法循环插入</span></span><br><span class="line">                r = r-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 最后获得进位</span></span><br><span class="line">            t /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果最后还有进位那么再创建一个结点存储进位</span></span><br><span class="line">        <span class="keyword">if</span> (t) &#123;</span><br><span class="line">            r-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(t);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> l; <span class="comment">// 返回第一个结点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ylm1379239710.github.io">Lyle</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ylm1379239710.github.io/2025/05/13/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0-%E5%8A%9B%E6%89%A3/">https://ylm1379239710.github.io/2025/05/13/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0-%E5%8A%9B%E6%89%A3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://ylm1379239710.github.io" target="_blank">OneMe.Log</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a><a class="post-meta__tags" href="/tags/C/">C++</a><a class="post-meta__tags" href="/tags/%E5%8A%9B%E6%89%A3/">力扣</a><a class="post-meta__tags" href="/tags/%E9%80%92%E5%BD%92/">递归</a><a class="post-meta__tags" href="/tags/%E9%93%BE%E8%A1%A8/">链表</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a></div><div class="post-share"><div class="social-share" data-image="/img/cover_2.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/12/1.%E7%AC%AC%E4%B8%80%E7%AB%A0%20ROS%E6%A6%82%E8%BF%B0%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="第一章 ROS概述与环境搭建"><img class="cover" src="/img/cover_3.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">第一章 ROS概述与环境搭建</div></div><div class="info-2"><div class="info-item-1">第一章 ROS概述与环境搭建1.1 ROS简介ROS全称Robot Operating System（机器人操作系统）.  ROS是适用于机器人的开源元操作系统 ROS集成了大量的工具，库，协议，提供类似OS所提供的功能，简化对机器人的控制 还提供了用于在多台计算机上获取，构建，编写和运行代码的工具和库，ROS在某些方面类似 于“机器人框架 ROS设计者将ROS表述为“ROS &#x3D; Plumbing + Tools + Capabilities + Ecosystem”，即ROS是通讯 机制、工具软件包、机器人高层技能以及机器人生态系统的集合体  机器人操作系统（ROS，Robot Operating System）的设计目标是提供一个灵活、模块化且可复用的框架，以简化复杂机器人系统的开发。 ROS的发行版本（ROS distribution）指ROS软件包的版本，其与Linux的发行版本（如Ubuntu） 的概念类似。推出ROS发行版本的目的在于使开发人员可以使用相对稳定的代码库，直到其准备好...</div></div></div></a><a class="pagination-related" href="/2025/05/14/3.%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2-%E5%8A%9B%E6%89%A3/" title="3.无重复字符的最长子串 - 力扣"><img class="cover" src="/img/cover_2.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">3.无重复字符的最长子串 - 力扣</div></div><div class="info-2"><div class="info-item-1">力扣算法题Day3  给定一个字符串 s ，请你找出其中不含有重复字符的 最长 子串 的长度。 示例 1: 123输入: s = &quot;abcabcbb&quot;输出: 3 解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。  示例 2: 123输入: s = &quot;bbbbb&quot;输出: 1解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。  示例 3: 1234输入: s = &quot;pwwkew&quot;输出: 3解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。  提示：  0 &lt;= s.length &lt;= 5 * 104 s...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/05/12/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C-%E5%8A%9B%E6%89%A3/" title="1.两数之和 - 力扣"><img class="cover" src="/img/cover_2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">1.两数之和 - 力扣</div></div><div class="info-2"><div class="info-item-1">力扣算法题Day1  题目：给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。 你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。 你可以按任意顺序返回答案。 示例 1： 123输入：nums = [2,7,11,15], target = 9输出：[0,1]解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。  示例 2： 12输入：nums = [3,2,4], target = 6输出：[1,2] 提示：  2 &lt;= nums.length &lt;= 104 -109 &lt;= nums[i] &lt;= 109 -109 &lt;= target &lt;= 109 只会存在一个有效答案  **进阶：**你可以想出一个时间复杂度小于 O(n2) 的算法吗？ 方法1： 1. 暴力循环法 遍历每个元素x，并依次往后查找是否存在一个值与target -...</div></div></div></a><a class="pagination-related" href="/2025/05/14/3.%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2-%E5%8A%9B%E6%89%A3/" title="3.无重复字符的最长子串 - 力扣"><img class="cover" src="/img/cover_2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-14</div><div class="info-item-2">3.无重复字符的最长子串 - 力扣</div></div><div class="info-2"><div class="info-item-1">力扣算法题Day3  给定一个字符串 s ，请你找出其中不含有重复字符的 最长 子串 的长度。 示例 1: 123输入: s = &quot;abcabcbb&quot;输出: 3 解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。  示例 2: 123输入: s = &quot;bbbbb&quot;输出: 1解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。  示例 3: 1234输入: s = &quot;pwwkew&quot;输出: 3解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。  提示：  0 &lt;= s.length &lt;= 5 * 104 s...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Lyle</div><div class="author-info-description">您好，欢迎来到Lyle的blog，我是您第114514次人格系统重装后残留的唯一非僵尸进程，专业承接：🔨 日常脑洞塌方维修 | 🧬 三观版本回滚 | 💡 深夜哲学溢出急救 | 🧯 社恐缓存清理</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/ylm1379239710" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1379239710@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/14/3.%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2-%E5%8A%9B%E6%89%A3/" title="3.无重复字符的最长子串 - 力扣"><img src="/img/cover_2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="3.无重复字符的最长子串 - 力扣"/></a><div class="content"><a class="title" href="/2025/05/14/3.%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2-%E5%8A%9B%E6%89%A3/" title="3.无重复字符的最长子串 - 力扣">3.无重复字符的最长子串 - 力扣</a><time datetime="2025-05-13T16:00:00.000Z" title="发表于 2025-05-14 00:00:00">2025-05-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/13/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0-%E5%8A%9B%E6%89%A3/" title="2.两数相加 - 力扣"><img src="/img/cover_2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2.两数相加 - 力扣"/></a><div class="content"><a class="title" href="/2025/05/13/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0-%E5%8A%9B%E6%89%A3/" title="2.两数相加 - 力扣">2.两数相加 - 力扣</a><time datetime="2025-05-12T16:00:00.000Z" title="发表于 2025-05-13 00:00:00">2025-05-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/12/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C-%E5%8A%9B%E6%89%A3/" title="1.两数之和 - 力扣"><img src="/img/cover_2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.两数之和 - 力扣"/></a><div class="content"><a class="title" href="/2025/05/12/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C-%E5%8A%9B%E6%89%A3/" title="1.两数之和 - 力扣">1.两数之和 - 力扣</a><time datetime="2025-05-11T16:00:00.000Z" title="发表于 2025-05-12 00:00:00">2025-05-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/12/1.%E7%AC%AC%E4%B8%80%E7%AB%A0%20ROS%E6%A6%82%E8%BF%B0%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="第一章 ROS概述与环境搭建"><img src="/img/cover_3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一章 ROS概述与环境搭建"/></a><div class="content"><a class="title" href="/2025/05/12/1.%E7%AC%AC%E4%B8%80%E7%AB%A0%20ROS%E6%A6%82%E8%BF%B0%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="第一章 ROS概述与环境搭建">第一章 ROS概述与环境搭建</a><time datetime="2025-05-11T16:00:00.000Z" title="发表于 2025-05-12 00:00:00">2025-05-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/11/%E5%9F%BA%E4%BA%8ECLIP-ReID%E5%92%8CYOLOv8%E7%9A%84%E8%A1%8C%E4%BA%BA%E6%A3%80%E6%B5%8B%E4%B8%8E%E9%87%8D%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/" title="基于CLIP-ReID和YOLOv8的行人检测与重识别系统"><img src="/img/cover_1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于CLIP-ReID和YOLOv8的行人检测与重识别系统"/></a><div class="content"><a class="title" href="/2025/05/11/%E5%9F%BA%E4%BA%8ECLIP-ReID%E5%92%8CYOLOv8%E7%9A%84%E8%A1%8C%E4%BA%BA%E6%A3%80%E6%B5%8B%E4%B8%8E%E9%87%8D%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/" title="基于CLIP-ReID和YOLOv8的行人检测与重识别系统">基于CLIP-ReID和YOLOv8的行人检测与重识别系统</a><time datetime="2025-05-10T16:00:00.000Z" title="发表于 2025-05-11 00:00:00">2025-05-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/top_img_2.png);"><div id="footer-wrap"><div class="copyright">&copy;2025 By Lyle</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><div id="global-aplayer" class="aplayer no-destroy" data-id="602323472" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" data-volume="0.2"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
