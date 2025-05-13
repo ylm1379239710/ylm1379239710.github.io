@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>RHEL 用户和组管理 | OneMe.Log</title><meta name="author" content="Lyle"><meta name="copyright" content="Lyle"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在RHEL中进行用户和组管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RHEL 用户和组管理">
+<meta property="og:url" content="https://ylm1379239710.github.io/2025/05/13/RHEL%20%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="OneMe.Log">
+<meta property="og:description" content="在RHEL中进行用户和组管理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ylm1379239710.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2025-05-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-12T16:00:00.000Z">
+<meta property="article:author" content="Lyle">
+<meta property="article:tag" content="RHEL">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ylm1379239710.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RHEL 用户和组管理",
+  "url": "https://ylm1379239710.github.io/2025/05/13/RHEL%20%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%AE%A1%E7%90%86/",
+  "image": "https://ylm1379239710.github.io/img/avatar.jpg",
+  "datePublished": "2025-05-12T16:00:00.000Z",
+  "dateModified": "2025-05-12T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Lyle",
+      "url": "https://ylm1379239710.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ylm1379239710.github.io/2025/05/13/RHEL%20%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%AE%A1%E7%90%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Lyle","link":"链接: ","source":"来源: OneMe.Log","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RHEL 用户和组管理',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script><link rel="stylesheet" href="/css/rightmenu.css"><script src="/js/rightmenu.js"></script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (true) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/img/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-project-diagram"></i><span> 个人项目</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa fa-gamepad"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-thumbs-up"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tools/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/resources/"><i class="fa-fw fas fa-file"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/top_img_3.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">OneMe.Log</span></a><a class="nav-page-title" href="/"><span class="site-name">RHEL 用户和组管理</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-project-diagram"></i><span> 个人项目</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa fa-gamepad"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-thumbs-up"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tools/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/resources/"><i class="fa-fw fas fa-file"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">RHEL 用户和组管理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-12T16:00:00.000Z" title="发表于 2025-05-13 00:00:00">2025-05-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-12T16:00:00.000Z" title="更新于 2025-05-13 00:00:00">2025-05-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/RHEL/">RHEL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">285</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2025/05/13/RHEL%20%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%AE%A1%E7%90%86/#post-comment"><span id="twikoo-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="RHEL-用户和组管理"><a href="#RHEL-用户和组管理" class="headerlink" title="RHEL 用户和组管理"></a>RHEL 用户和组管理</h1><h2 id="1-创建指定用户和组"><a href="#1-创建指定用户和组" class="headerlink" title="1.创建指定用户和组"></a>1.创建指定用户和组</h2><p>①增加usergrp组，GID号为6000。</p>
+ <img src="https://i-blog.csdnimg.cn/blog_migrate/31b3ff2b1fe7adc82bf276a118181eb0.png" alt="" style="max-height:56px; box-sizing:content-box;" />
+ <img src="https://i-blog.csdnimg.cn/blog_migrate/d57d8e4a8a5a93eb66e357ec9433d962.png" alt="" style="max-height:33px; box-sizing:content-box;" />
+
+
+<p>②新增user1用户，UID号为6000，密码为空，并将其附属组加入usergrp组中。</p>
+ <img src="https://i-blog.csdnimg.cn/blog_migrate/a6af942c59e1c924617e8543cbcfc63b.png" alt="" style="max-height:72px; box-sizing:content-box;" />
+
+
+<p>③新增user2用户，密码为password，将用户的附属组加入root组和usergrp组。用户的主目录为&#x2F;user2目录。</p>
+ <img src="https://i-blog.csdnimg.cn/blog_migrate/fa72f8c9cddf055ee20685fbdfbe0e7b.png" alt="" style="max-height:35px; box-sizing:content-box;" />
+
+
+ <img src="https://i-blog.csdnimg.cn/blog_migrate/f8f929940ca36af0cdd574654fbdd239.png" alt="" style="max-height:107px; box-sizing:content-box;" />
+
+
+<p>④新增user3用户，不为用户建立并初始化宿主目录，用户不允许登陆到系统的shell。</p>
+ <img src="https://i-blog.csdnimg.cn/blog_migrate/14798ae412cce960379921a838f034f8.png" alt="" style="max-height:36px; box-sizing:content-box;" />
+ <img src="https://i-blog.csdnimg.cn/blog_migrate/ec01affd62cc6ff04a0b6c8a4a93f06b.png" alt="" style="max-height:38px; box-sizing:content-box;" />
+
+
+<h2 id="2-设置用户的密码期限"><a href="#2-设置用户的密码期限" class="headerlink" title="2.设置用户的密码期限"></a>2.设置用户的密码期限</h2><p>①设置user1用户，在下次登录时必须强制更改密码。 <img src="https://i-blog.csdnimg.cn/blog_migrate/ced1aefddce1092247335f79520841b7.png" alt="" style="max-height:22px; box-sizing:content-box;" /></p>
+<p>②设置user2用户，密码30天必须更改密码，密码在2017年10月10日过期。 <img src="https://i-blog.csdnimg.cn/blog_migrate/d601a7c133eb35160f366c41768af9d8.png" alt="" style="max-height:34px; box-sizing:content-box;" /></p>
+<h2 id="3-新建目录-var-www-user1，并设置如下权限："><a href="#3-新建目录-var-www-user1，并设置如下权限：" class="headerlink" title="3.新建目录&#x2F;var&#x2F;www&#x2F;user1，并设置如下权限："></a>3.新建目录&#x2F;var&#x2F;www&#x2F;user1，并设置如下权限：</h2><p>①将此目录的所有者设置为user1，并设置读写执行权限</p>
+<p>②将此目录的组设置为usergrp，并设置读执行权限</p>
+<p>③将其它用户的权限设置为只读</p>
+ <img src="https://i-blog.csdnimg.cn/blog_migrate/a8ce274fd3f38fe978e9d67833de2869.png" alt="" style="max-height:34px; box-sizing:content-box;" />
+ <img src="https://i-blog.csdnimg.cn/blog_migrate/c350e797a9018d7a1f77506f195b89de.png" alt="" style="max-height:70px; box-sizing:content-box;" />
+
+
+
+
+<h2 id="4-创建-test目录，在此目录中任何用户都可以创建文件或目录，但只有用户自身和root用户可以删除用户所创建的文件或目录。"><a href="#4-创建-test目录，在此目录中任何用户都可以创建文件或目录，但只有用户自身和root用户可以删除用户所创建的文件或目录。" class="headerlink" title="4.创建&#x2F;test目录，在此目录中任何用户都可以创建文件或目录，但只有用户自身和root用户可以删除用户所创建的文件或目录。"></a>4.创建&#x2F;test目录，在此目录中任何用户都可以创建文件或目录，但只有用户自身和root用户可以删除用户所创建的文件或目录。</h2> <img src="https://i-blog.csdnimg.cn/blog_migrate/8c16a6aafafebabd419a14d155a24c3b.png" alt="" style="max-height:16px; box-sizing:content-box;" />
+
+
+ <img src="https://i-blog.csdnimg.cn/blog_migrate/265624de5432db79712f2132c2a71cfc.png" alt="" style="max-height:71px; box-sizing:content-box;" /></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ylm1379239710.github.io">Lyle</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ylm1379239710.github.io/2025/05/13/RHEL%20%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%AE%A1%E7%90%86/">https://ylm1379239710.github.io/2025/05/13/RHEL%20%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%AE%A1%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://ylm1379239710.github.io" target="_blank">OneMe.Log</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/RHEL/">RHEL</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/13/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0-%E5%8A%9B%E6%89%A3/" title="2.两数相加 - 力扣"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">2.两数相加 - 力扣</div></div><div class="info-2"><div class="info-item-1">力扣算法题Day2  **题目：**给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。 请你将两个数相加，并以相同形式返回一个表示和的链表。 你可以假设除了数字 0 之外，这两个数都不会以 0 开头。 示例 1：  123输入：l1 = [2,4,3], l2 = [5,6,4]输出：[7,0,8]解释：342 + 465 = 807.  示例 2： 12输入：l1 = [0], l2 = [0]输出：[0]  示例 3： 12输入：l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]输出：[8,9,9,9,0,0,0,1]  提示：  每个链表中的节点数在范围 [1, 100] 内 0 &lt;= Node.val &lt;=...</div></div></div></a><a class="pagination-related" href="/2025/05/13/RHEL%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%EF%BC%9ALinux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" title="RHEL目录和文件操作：Linux文件系统管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">RHEL目录和文件操作：Linux文件系统管理</div></div><div class="info-2"><div class="info-item-1">RHEL目录和文件操作：Linux文件系统管理1.某企业的 Linux 服务器中新增了一块硬盘&#x2F;dev&#x2F;sdb，请使用 fdisk 命令新建&#x2F;dev&#x2F;sdb1 主分区和&#x2F;dev&#x2F;sdb2 扩展分区，并在扩展分区中新建逻辑分区&#x2F;dev&#x2F;sdb5，并使用 mkfs 命令分别创建 vfat 和 ext3 文件系统。然 后用fsck命令检查这两个文件系统；最后，把这两个文件系统挂载到系统上。            子项目1．创建&#x2F;dev&#x2F;sdb1和&#x2F;dev&#x2F;sdb5①使用fdisk命令创建&#x2F;dev&#x2F;sdb1主分区。    ②使用fdisk命令创建&#x2F;dev&#x2F;sdb2扩展分区。      ③使用fdisk命令创建&#x2F;dev&#x2F;sdb5逻辑分区。          ④输入子命令w，把设置写入硬盘分区表，退出fdisk并重新启动系统。    ⑤用mkfs命令在上述刚刚创建的分区上创建ext3文件系统和vfat文件系统。...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/05/12/RHEL%E5%B8%B8%E7%94%A8%20Linux%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/" title="RHEL常用 Linux命令操作"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-12</div><div class="info-item-2">RHEL常用 Linux命令操作</div></div><div class="info-2"><div class="info-item-1">RHEL常用 Linux命令操作实验操作过程： 项目一：(1)启动计算机，利用root用户登录到系统，进入字符提示界面。 （2）用pwd命令查看当前所在的目录。 1#pwd  （3）用ls命令列出此目录下的文件和目录。 1#ls  （4）用-a选项列出此目录下包括隐藏文件在内的所有文件和目录。 1#ls -a  （5）用man命令查看ls命令的使用手册。 1#man ls   注意：按q返回  （6）在当前目录下，创建测试目录test。 1#mkdir test  （7）利用ls命令列出文件和目录，确认test目录创建成功。 1#ls  （8）进入test目录，利用pwd查看当前工作目录。 1#cd test  1#pwd  （9）利用touch 命令，在当前目录创建一个新的空文件newfile。 1#touch newfile   注：不写目标文件默认在当前目录中创建。  （10）利用cp命令复制系统文件&#x2F;etc&#x2F;profile到当前目录下。 1#cp /etc/profile .   注：cp不写目标文件会提示缺少目标文件，所以不能省略。   . ...</div></div></div></a><a class="pagination-related" href="/2025/05/13/RHEL%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%EF%BC%9ALinux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" title="RHEL目录和文件操作：Linux文件系统管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-13</div><div class="info-item-2">RHEL目录和文件操作：Linux文件系统管理</div></div><div class="info-2"><div class="info-item-1">RHEL目录和文件操作：Linux文件系统管理1.某企业的 Linux 服务器中新增了一块硬盘&#x2F;dev&#x2F;sdb，请使用 fdisk 命令新建&#x2F;dev&#x2F;sdb1 主分区和&#x2F;dev&#x2F;sdb2 扩展分区，并在扩展分区中新建逻辑分区&#x2F;dev&#x2F;sdb5，并使用 mkfs 命令分别创建 vfat 和 ext3 文件系统。然 后用fsck命令检查这两个文件系统；最后，把这两个文件系统挂载到系统上。            子项目1．创建&#x2F;dev&#x2F;sdb1和&#x2F;dev&#x2F;sdb5①使用fdisk命令创建&#x2F;dev&#x2F;sdb1主分区。    ②使用fdisk命令创建&#x2F;dev&#x2F;sdb2扩展分区。      ③使用fdisk命令创建&#x2F;dev&#x2F;sdb5逻辑分区。          ④输入子命令w，把设置写入硬盘分区表，退出fdisk并重新启动系统。    ⑤用mkfs命令在上述刚刚创建的分区上创建ext3文件系统和vfat文件系统。...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Lyle</div><div class="author-info-description">您好，欢迎来到Lyle的blog，我是您第114514次人格系统重装后残留的唯一非僵尸进程，专业承接：
+<br>
+🔨 日常脑洞塌方维修 
+<br>
+🧬 坍塌三观版本回滚 
+<br>
+💡 深夜哲学溢出急救
+<br>
+🧯 社死社恐缓存清理'
+</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/ylm1379239710" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1379239710@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hey,欢迎来到我的博客！
+<br>
+00后程序员一枚，喜欢折腾。
+<br>
+QQ:1379239710
+<br>
+欢迎一起交流玩耍。
+<br>
+<img src="/img/a.gif">
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RHEL-%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%AE%A1%E7%90%86"><span class="toc-text">RHEL 用户和组管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E6%8C%87%E5%AE%9A%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84"><span class="toc-text">1.创建指定用户和组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E7%9A%84%E5%AF%86%E7%A0%81%E6%9C%9F%E9%99%90"><span class="toc-text">2.设置用户的密码期限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%96%B0%E5%BB%BA%E7%9B%AE%E5%BD%95-var-www-user1%EF%BC%8C%E5%B9%B6%E8%AE%BE%E7%BD%AE%E5%A6%82%E4%B8%8B%E6%9D%83%E9%99%90%EF%BC%9A"><span class="toc-text">3.新建目录&#x2F;var&#x2F;www&#x2F;user1，并设置如下权限：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA-test%E7%9B%AE%E5%BD%95%EF%BC%8C%E5%9C%A8%E6%AD%A4%E7%9B%AE%E5%BD%95%E4%B8%AD%E4%BB%BB%E4%BD%95%E7%94%A8%E6%88%B7%E9%83%BD%E5%8F%AF%E4%BB%A5%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%EF%BC%8C%E4%BD%86%E5%8F%AA%E6%9C%89%E7%94%A8%E6%88%B7%E8%87%AA%E8%BA%AB%E5%92%8Croot%E7%94%A8%E6%88%B7%E5%8F%AF%E4%BB%A5%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7%E6%89%80%E5%88%9B%E5%BB%BA%E7%9A%84%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E3%80%82"><span class="toc-text">4.创建&#x2F;test目录，在此目录中任何用户都可以创建文件或目录，但只有用户自身和root用户可以删除用户所创建的文件或目录。</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/14/3.%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2-%E5%8A%9B%E6%89%A3/" title="3.无重复字符的最长子串 - 力扣">3.无重复字符的最长子串 - 力扣</a><time datetime="2025-05-13T16:00:00.000Z" title="发表于 2025-05-14 00:00:00">2025-05-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/13/2.%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0-%E5%8A%9B%E6%89%A3/" title="2.两数相加 - 力扣">2.两数相加 - 力扣</a><time datetime="2025-05-12T16:00:00.000Z" title="发表于 2025-05-13 00:00:00">2025-05-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/13/RHEL%20%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84%E7%AE%A1%E7%90%86/" title="RHEL 用户和组管理">RHEL 用户和组管理</a><time datetime="2025-05-12T16:00:00.000Z" title="发表于 2025-05-13 00:00:00">2025-05-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/13/RHEL%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%EF%BC%9ALinux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" title="RHEL目录和文件操作：Linux文件系统管理">RHEL目录和文件操作：Linux文件系统管理</a><time datetime="2025-05-12T16:00:00.000Z" title="发表于 2025-05-13 00:00:00">2025-05-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/12/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C-%E5%8A%9B%E6%89%A3/" title="1.两数之和 - 力扣">1.两数之和 - 力扣</a><time datetime="2025-05-11T16:00:00.000Z" title="发表于 2025-05-12 00:00:00">2025-05-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/top_img_3.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2025 By Lyle</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://merry-smakager-952f3e.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://merry-smakager-952f3e.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><div id="global-aplayer" class="aplayer no-destroy" data-id="602323472" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" data-volume="0.2"></div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa-solid fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa-solid fa-arrow-rotate-right"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa-solid fa-arrow-right"></i></a><a class="rightMenu-item" id="menu-radompage" href="javascript:window.location.href = window.location.origin;"><i class="fa-solid fa-house"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa-solid fa-copy"></i><span>复制</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="javascript:rmf.switchDarkMode();"><i class="fa-solid fa-circle-half-stroke"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="javascript:rmf.switchReadMode();"><i class="fa-solid fa-book"></i><span>阅读模式</span></a></div></div></body></html>
