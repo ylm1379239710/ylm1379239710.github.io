@@ -164,7 +164,7 @@
   isHighlightShrink: false,
   isToc: false,
   pageType: 'post'
-}</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+}</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script><!-- 预加载动画 HTML 结构 --> <div class="loading-wrap"> <div class="loading-container"> <svg class="superman-svg" viewBox="0 0 512 512"> <path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 448c-105.9 0-192-86.1-192-192S150.1 64 256 64s192 86.1 192 192-86.1 192-192 192z"/> <path d="M320 160h-48v128h-64V160h-48l80-128z"/> </svg> <div class="loading-text-flash">Loading...</div> </div> </div> <script> // 页面完全加载后隐藏动画 window.addEventListener('load', function() { document.querySelector('.loading-wrap').style.opacity = '0'; setTimeout(() => { document.querySelector('.loading-wrap').style.display = 'none'; }, 300); // 配合 CSS 过渡效果 }); </script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
   const $loadingBox = document.getElementById('loading-box')
   const $body = document.body
   const preloader = {
@@ -286,18 +286,7 @@
   } else {
     window.loadOtherComment = loadTwikoo
   }
-})()</script></div><div id="global-aplayer" class="aplayer no-destroy" data-id="602323472" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" data-volume="0.2"></div><!-- 预加载内容：超人轮廓 + 闪动文字 -->
-<div class="loading-wrap">
-  <div class="loading-container">
-    <!-- 超人 SVG 轮廓（标志路径可替换为你喜欢的超人图案） -->
-    <svg class="superman-svg" viewBox="0 0 512 512">
-      <path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 448c-105.9 0-192-86.1-192-192S150.1 64 256 64s192 86.1 192 192-86.1 192-192 192z"/>
-      <path d="M320 160h-48v128h-64V160h-48l80-128z"/>
-    </svg>
-    <div class="loading-text-flash">Loading...</div>
-  </div>
-</div>
-<script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script>(() => {
+})()</script></div><div id="global-aplayer" class="aplayer no-destroy" data-id="602323472" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" data-volume="0.2"></div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script>(() => {
   const destroyAplayer = () => {
     if (window.aplayers) {
       for (let i = 0; i < window.aplayers.length; i++) {
