@@ -448,12 +448,6 @@ canvas:not(#ribbon-canvas),
   -ms-animation: donate_effcet 0.3s 0.1s ease both;
   animation: donate_effcet 0.3s 0.1s ease both;
 }
-@font-face {
-  font-family: "MaoKenZhuyuanTi";
-  src: url("/fonts/MaoKenZhuyuanTi.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
 @-moz-keyframes scroll-down-effect {
   0% {
     opacity: 0.4;
