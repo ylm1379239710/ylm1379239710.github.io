@@ -450,7 +450,7 @@ canvas:not(#ribbon-canvas),
 }
 @font-face {
   font-family: "MaoKenZhuyuanTi";
-  src: url("fonts/MaoKenZhuyuanTi.ttf") format("truetype");
+  src: url("/fonts/MaoKenZhuyuanTi.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
