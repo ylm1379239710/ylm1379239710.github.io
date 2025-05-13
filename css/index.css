@@ -1540,6 +1540,12 @@ blockquote footer cite:before {
 blockquote > :last-child {
   margin-bottom: 0 !important;
 }
+@font-face {
+  font-family: "MaoKenZhuyuanTi";
+  src: url("/fonts/MaoKenZhuyuanTi.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 :root {
   --hl-color: #90a4ae;
   --hl-bg: #f6f8fa;
