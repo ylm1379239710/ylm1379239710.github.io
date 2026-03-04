@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>小说语音阅读器（听小说） | OneMe.Log</title><meta name="author" content="Lyle"><meta name="copyright" content="Lyle"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一个基于Edge-TTS和PySide6的小说语音阅读器，支持多小说源搜索、章节内容获取、文本转语音等功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小说语音阅读器（听小说）">
+<meta property="og:url" content="https://ylm1379239710.github.io/2025/11/15/%E5%B0%8F%E8%AF%B4%E8%AF%AD%E9%9F%B3%E9%98%85%E8%AF%BB%E5%99%A8%EF%BC%88%E5%90%AC%E5%B0%8F%E8%AF%B4%EF%BC%89/index.html">
+<meta property="og:site_name" content="OneMe.Log">
+<meta property="og:description" content="一个基于Edge-TTS和PySide6的小说语音阅读器，支持多小说源搜索、章节内容获取、文本转语音等功能。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ylm1379239710.github.io/img/cover_5.png">
+<meta property="article:published_time" content="2025-11-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-04T05:53:10.706Z">
+<meta property="article:author" content="Lyle">
+<meta property="article:tag" content="Edge-TTS">
+<meta property="article:tag" content="PySide6">
+<meta property="article:tag" content="小说语音阅读器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ylm1379239710.github.io/img/cover_5.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "小说语音阅读器（听小说）",
+  "url": "https://ylm1379239710.github.io/2025/11/15/%E5%B0%8F%E8%AF%B4%E8%AF%AD%E9%9F%B3%E9%98%85%E8%AF%BB%E5%99%A8%EF%BC%88%E5%90%AC%E5%B0%8F%E8%AF%B4%EF%BC%89/",
+  "image": "https://ylm1379239710.github.io/img/cover_5.png",
+  "datePublished": "2025-11-14T16:00:00.000Z",
+  "dateModified": "2026-03-04T05:53:10.706Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Lyle",
+      "url": "https://ylm1379239710.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ylm1379239710.github.io/2025/11/15/%E5%B0%8F%E8%AF%B4%E8%AF%AD%E9%9F%B3%E9%98%85%E8%AF%BB%E5%99%A8%EF%BC%88%E5%90%AC%E5%B0%8F%E8%AF%B4%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Lyle","link":"链接: ","source":"来源: OneMe.Log","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '小说语音阅读器（听小说）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script><link rel="stylesheet" href="/css/rightmenu.css"><script src="/js/rightmenu.js"></script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (true) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/img/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-project-diagram"></i><span> 个人项目</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa fa-gamepad"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-thumbs-up"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tools/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/resources/"><i class="fa-fw fas fa-file"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/top_img_8.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">OneMe.Log</span></a><a class="nav-page-title" href="/"><span class="site-name">小说语音阅读器（听小说）</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-project-diagram"></i><span> 个人项目</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa fa-gamepad"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-thumbs-up"></i><span> 推荐</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tools/"><i class="fa-fw fas fa-tools"></i><span> 工具</span></a></li><li><a class="site-page child" href="/resources/"><i class="fa-fw fas fa-file"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">小说语音阅读器（听小说）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-14T16:00:00.000Z" title="发表于 2025-11-15 00:00:00">2025-11-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-04T05:53:10.706Z" title="更新于 2026-03-04 13:53:10">2026-03-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%87%AA%E7%A0%94%E8%BD%AF%E4%BB%B6/">自研软件</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">812</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2025/11/15/%E5%B0%8F%E8%AF%B4%E8%AF%AD%E9%9F%B3%E9%98%85%E8%AF%BB%E5%99%A8%EF%BC%88%E5%90%AC%E5%B0%8F%E8%AF%B4%EF%BC%89/#post-comment"><span id="twikoo-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:90,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2026-03-04 13:53:10&quot;}" hidden></div><h1 id="小说语音阅读器"><a href="#小说语音阅读器" class="headerlink" title="小说语音阅读器"></a>小说语音阅读器</h1><p>一个功能丰富的小说阅读与语音朗读应用，支持多小说源搜索、章节内容获取、文本转语音等功能。</p>
+<h2 id="界面展示"><a href="#界面展示" class="headerlink" title="界面展示"></a>界面展示</h2><p>小说获取界面：</p>
+<p><img src="https://github.com/ylm1379239710/op_reader/raw/master/show/1.png" alt="界面截图"></p>
+<p>我的书架界面：</p>
+<p><img src="https://github.com/ylm1379239710/op_reader/raw/master/show/2.png" alt="界面截图"></p>
+<p>语音朗读界面：</p>
+<p><img src="https://github.com/ylm1379239710/op_reader/raw/master/show/3.png" alt="界面截图"></p>
+<h2 id="功能特点"><a href="#功能特点" class="headerlink" title="功能特点"></a>功能特点</h2><h3 id="多小说源支持"><a href="#多小说源支持" class="headerlink" title="多小说源支持"></a>多小说源支持</h3><ul>
+<li><strong>得奇小说网</strong> (deqixs.co) - 支持搜索和章节获取</li>
+<li><strong>小说阅读网</strong> (xiaoshuoyuedu.com) - 支持搜索和章节获取</li>
+<li>可扩展架构，方便添加更多小说源</li>
+</ul>
+<h3 id="语音朗读"><a href="#语音朗读" class="headerlink" title="语音朗读"></a>语音朗读</h3><ul>
+<li>使用 Edge-TTS 高质量语音合成</li>
+<li>多种中文语音选择（晓晓、云希等）</li>
+<li>可调节语速（0.5x - 2.0x）</li>
+<li>音频文件自动缓存，避免重复生成</li>
+</ul>
+<h3 id="阅读功能"><a href="#阅读功能" class="headerlink" title="阅读功能"></a>阅读功能</h3><ul>
+<li>章节列表导航</li>
+<li>自动播放下一章</li>
+<li>播放进度控制</li>
+<li>暂停&#x2F;继续播放</li>
+<li>上一章&#x2F;下一章切换</li>
+</ul>
+<h3 id="书架管理"><a href="#书架管理" class="headerlink" title="书架管理"></a>书架管理</h3><ul>
+<li>自动保存已加载的小说</li>
+<li>记住上次阅读位置</li>
+<li>快速访问历史小说</li>
+</ul>
+<h2 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">op_reader/</span><br><span class="line">├── config.py              # 配置文件（语音映射、目录设置等）</span><br><span class="line">├── utils.py               # 工具函数</span><br><span class="line">├── novel_base.py          # 小说源抽象基类</span><br><span class="line">├── deqixs_source.py       # 得奇小说网源实现</span><br><span class="line">├── xiaoshuoyuedu_source.py # 小说阅读网源实现</span><br><span class="line">├── source_manager.py      # 小说源管理器</span><br><span class="line">├── tts_engine.py          # TTS引擎模块</span><br><span class="line">├── reader_optimized.py    # 主程序</span><br><span class="line">├── novel/                 # 小说文件存储目录</span><br><span class="line">├── mp3/                   # 音频文件缓存目录</span><br><span class="line">└── dist/                  # 打包后的可执行文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>依赖包：</p>
+<ul>
+<li>PySide6 &gt;&#x3D; 6.5.0 (GUI框架)</li>
+<li>pygame &gt;&#x3D; 2.5.0 (音频播放)</li>
+<li>edge-tts &gt;&#x3D; 6.1.0 (语音合成)</li>
+<li>requests &gt;&#x3D; 2.31.0 (网络请求)</li>
+<li>beautifulsoup4 &gt;&#x3D; 4.12.0 (HTML解析)</li>
+<li>mutagen &gt;&#x3D; 1.47.0 (音频元数据)</li>
+</ul>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python reader_optimized.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="或使用打包版本"><a href="#或使用打包版本" class="headerlink" title="或使用打包版本"></a>或使用打包版本</h3><p>直接运行 <code>dist/小说阅读器.exe</code></p>
+<h3 id="加载小说"><a href="#加载小说" class="headerlink" title="加载小说"></a>加载小说</h3><ol>
+<li><strong>在线搜索</strong>: 切换到”小说获取”标签页，选择小说源，输入关键词搜索</li>
+<li><strong>本地文件</strong>: 通过书架或直接打开已保存的小说文件</li>
+</ol>
+<h3 id="播放朗读"><a href="#播放朗读" class="headerlink" title="播放朗读"></a>播放朗读</h3><ol>
+<li>在章节列表中选择章节</li>
+<li>点击”开始”按钮</li>
+<li>首次播放会自动生成音频文件</li>
+</ol>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><ul>
+<li>选择语音类型</li>
+<li>调节语速</li>
+<li>开启&#x2F;关闭自动播放下一章</li>
+</ul>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空格</td>
+<td>播放&#x2F;暂停</td>
+</tr>
+<tr>
+<td>Ctrl + →</td>
+<td>下一章</td>
+</tr>
+<tr>
+<td>Ctrl + ←</td>
+<td>上一章</td>
+</tr>
+</tbody></table>
+<h2 id="扩展小说源"><a href="#扩展小说源" class="headerlink" title="扩展小说源"></a>扩展小说源</h2><p>要添加新的小说源，需要：</p>
+<ol>
+<li>创建新的源文件（如 <code>new_source.py</code>）</li>
+<li>继承 <code>NovelSourceBase</code> 基类</li>
+<li>实现以下方法：<ul>
+<li><code>search_novel(keyword)</code> - 搜索小说</li>
+<li><code>extract_novel_info(url)</code> - 提取小说信息</li>
+<li><code>extract_chapter_content(url)</code> - 获取章节内容</li>
+</ul>
+</li>
+<li>在 <code>source_manager.py</code> 中注册新源</li>
+</ol>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> novel_base <span class="keyword">import</span> NovelSourceBase</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NewSource</span>(<span class="title class_ inherited__">NovelSourceBase</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="variable language_">self</span>.source_name = <span class="string">&quot;新小说源&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.base_url = <span class="string">&quot;https://example.com&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search_novel</span>(<span class="params">self, keyword: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">dict</span>]:</span><br><span class="line">        <span class="comment"># 实现搜索逻辑</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">extract_novel_info</span>(<span class="params">self, url: <span class="built_in">str</span></span>) -&gt; <span class="type">Tuple</span>[<span class="built_in">str</span>, <span class="type">List</span>]:</span><br><span class="line">        <span class="comment"># 实现小说信息提取</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">extract_chapter_content</span>(<span class="params">self, chapter_url: <span class="built_in">str</span></span>) -&gt; <span class="type">Optional</span>[<span class="built_in">str</span>]:</span><br><span class="line">        <span class="comment"># 实现章节内容获取</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="打包为可执行文件"><a href="#打包为可执行文件" class="headerlink" title="打包为可执行文件"></a>打包为可执行文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller --onefile --windowed --name <span class="string">&quot;小说阅读器&quot;</span> reader_optimized.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>首次生成音频需要网络连接</li>
+<li>音频文件会缓存到 <code>mp3/</code> 目录</li>
+<li>不同源的同名小说会分别存储</li>
+<li>建议在网络良好时预加载章节</li>
+</ul>
+<h2 id="许可证"><a href="#许可证" class="headerlink" title="许可证"></a>许可证</h2><p>本项目仅供学习交流使用。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ylm1379239710.github.io">Lyle</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ylm1379239710.github.io/2025/11/15/%E5%B0%8F%E8%AF%B4%E8%AF%AD%E9%9F%B3%E9%98%85%E8%AF%BB%E5%99%A8%EF%BC%88%E5%90%AC%E5%B0%8F%E8%AF%B4%EF%BC%89/">https://ylm1379239710.github.io/2025/11/15/%E5%B0%8F%E8%AF%B4%E8%AF%AD%E9%9F%B3%E9%98%85%E8%AF%BB%E5%99%A8%EF%BC%88%E5%90%AC%E5%B0%8F%E8%AF%B4%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://ylm1379239710.github.io" target="_blank">OneMe.Log</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Edge-TTS/">Edge-TTS</a><a class="post-meta__tags" href="/tags/PySide6/">PySide6</a><a class="post-meta__tags" href="/tags/%E5%B0%8F%E8%AF%B4%E8%AF%AD%E9%9F%B3%E9%98%85%E8%AF%BB%E5%99%A8/">小说语音阅读器</a></div><div class="post-share"><div class="social-share" data-image="/img/cover_5.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/15/MyBoy%E6%A1%8C%E9%9D%A2%E5%85%BB%E6%88%90%E5%BC%8F%E7%94%B7%E5%AD%A9/" title="MyBoy桌面养成式男孩"><img class="cover" src="/img/cover_4.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">MyBoy桌面养成式男孩</div></div><div class="info-2"><div class="info-item-1">MyBoy桌面养成式男孩简介这是一个使用Python和Tkinter库开发的桌面养成式男孩应用程序。用户可以通过喂食、工作和休息来照顾一个虚拟的小男孩。应用程序还包括倒计时提醒，提升用户体验。人生模拟，有六维属性，用户可以通过与虚拟男孩的互动来管理和发展他的属性。同时，应用程序还提供了重生功能，用户可以在虚拟男孩死亡后重新开始。  Github：https://github.com/ylm1379239710/MyBoy  功能 六维属性 投喂 购买 工作 零工 运动 学习 休息 倒计时提醒 重生  界面         安装1pip install -r requirements.txt  打包1pyinstaller .\MyBoy.spec  运行将项目里的configs文件夹和images文件夹复制后 与生成的可执行文件放在同一目录下，然后运行exe即可 </div></div></div></a><a class="pagination-related" href="/2025/12/08/C++%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="（C++）基础入门"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">（C++）基础入门</div></div><div class="info-2"><div class="info-item-1">C++基础入门1 C++初识1.1  第一个C++程序编写一个C++程序总共分为4个步骤  创建项目 创建文件 编写代码 运行程序  1.1.1 创建项目​	Visual Studio是我们用来编写C++程序的主要工具，我们先将它打开   1.1.2 创建文件右键源文件，选择添加-&gt;新建项  给C++文件起个名称，然后点击添加即可。  1.1.3 编写代码1234567891011#include&lt;iostream&gt;using namespace std;int main() &#123;	cout &lt;&lt; &quot;Hello world&quot; &lt;&lt; endl;	system(&quot;pause&quot;);	return 0;&#125;  1.1.4 运行程序 1.2 注释作用：在代码中加一些说明和解释，方便自己或其他程序员程序员阅读代码 两种格式  单行注释：// 描述信息  通常放在一行代码的上方，或者一条语句的末尾，&#x3D;&#x3D;对该行代码说明&#x3D;&#x3D;   多行注释： /* 描述信息...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Lyle</div><div class="author-info-description">您好，欢迎来到Lyle的blog，我是您第114514次人格系统重装后残留的唯一非僵尸进程，专业承接：
+<br>
+🔨 日常脑洞塌方维修 
+<br>
+🧬 坍塌三观版本回滚 
+<br>
+💡 深夜哲学溢出急救
+<br>
+🧯 社死社恐缓存清理'
+</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/ylm1379239710" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1379239710@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hey,欢迎来到我的博客！
+<br>
+00后程序员一枚，喜欢折腾。
+<br>
+QQ:1379239710
+<br>
+欢迎一起交流玩耍。
+<br>
+<img src="/img/a.gif">
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E8%AF%B4%E8%AF%AD%E9%9F%B3%E9%98%85%E8%AF%BB%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">小说语音阅读器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%8C%E9%9D%A2%E5%B1%95%E7%A4%BA"><span class="toc-number">1.1.</span> <span class="toc-text">界面展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">功能特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%B0%8F%E8%AF%B4%E6%BA%90%E6%94%AF%E6%8C%81"><span class="toc-number">1.2.1.</span> <span class="toc-text">多小说源支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E9%9F%B3%E6%9C%97%E8%AF%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">语音朗读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD"><span class="toc-number">1.2.3.</span> <span class="toc-text">阅读功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A6%E6%9E%B6%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.4.</span> <span class="toc-text">书架管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-number">1.4.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.5.1.</span> <span class="toc-text">运行程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%96%E4%BD%BF%E7%94%A8%E6%89%93%E5%8C%85%E7%89%88%E6%9C%AC"><span class="toc-number">1.5.2.</span> <span class="toc-text">或使用打包版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E5%B0%8F%E8%AF%B4"><span class="toc-number">1.5.3.</span> <span class="toc-text">加载小说</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%92%AD%E6%94%BE%E6%9C%97%E8%AF%BB"><span class="toc-number">1.5.4.</span> <span class="toc-text">播放朗读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.5.5.</span> <span class="toc-text">设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">1.6.</span> <span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E5%B0%8F%E8%AF%B4%E6%BA%90"><span class="toc-number">1.7.</span> <span class="toc-text">扩展小说源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E4%B8%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="toc-number">1.8.</span> <span class="toc-text">打包为可执行文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.9.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B8%E5%8F%AF%E8%AF%81"><span class="toc-number">1.10.</span> <span class="toc-text">许可证</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/10/C++%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B/" title="（C++）提高编程">（C++）提高编程</a><time datetime="2025-12-09T16:00:00.000Z" title="发表于 2025-12-10 00:00:00">2025-12-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/09/C++%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/" title="（C++）核心编程">（C++）核心编程</a><time datetime="2025-12-08T16:00:00.000Z" title="发表于 2025-12-09 00:00:00">2025-12-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/08/C++%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="（C++）基础入门">（C++）基础入门</a><time datetime="2025-12-07T16:00:00.000Z" title="发表于 2025-12-08 00:00:00">2025-12-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/15/MyBoy%E6%A1%8C%E9%9D%A2%E5%85%BB%E6%88%90%E5%BC%8F%E7%94%B7%E5%AD%A9/" title="MyBoy桌面养成式男孩"><img src="/img/cover_4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MyBoy桌面养成式男孩"/></a><div class="content"><a class="title" href="/2025/11/15/MyBoy%E6%A1%8C%E9%9D%A2%E5%85%BB%E6%88%90%E5%BC%8F%E7%94%B7%E5%AD%A9/" title="MyBoy桌面养成式男孩">MyBoy桌面养成式男孩</a><time datetime="2025-11-14T16:00:00.000Z" title="发表于 2025-11-15 00:00:00">2025-11-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/15/%E5%B0%8F%E8%AF%B4%E8%AF%AD%E9%9F%B3%E9%98%85%E8%AF%BB%E5%99%A8%EF%BC%88%E5%90%AC%E5%B0%8F%E8%AF%B4%EF%BC%89/" title="小说语音阅读器（听小说）"><img src="/img/cover_5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小说语音阅读器（听小说）"/></a><div class="content"><a class="title" href="/2025/11/15/%E5%B0%8F%E8%AF%B4%E8%AF%AD%E9%9F%B3%E9%98%85%E8%AF%BB%E5%99%A8%EF%BC%88%E5%90%AC%E5%B0%8F%E8%AF%B4%EF%BC%89/" title="小说语音阅读器（听小说）">小说语音阅读器（听小说）</a><time datetime="2025-11-14T16:00:00.000Z" title="发表于 2025-11-15 00:00:00">2025-11-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/top_img_8.png);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Lyle</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://merry-smakager-952f3e.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://merry-smakager-952f3e.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><div id="global-aplayer" class="aplayer no-destroy" data-id="602323472" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" data-volume="0.2"></div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa-solid fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa-solid fa-arrow-rotate-right"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa-solid fa-arrow-right"></i></a><a class="rightMenu-item" id="menu-radompage" href="javascript:window.location.href = window.location.origin;"><i class="fa-solid fa-house"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa-solid fa-copy"></i><span>复制</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="javascript:rmf.switchDarkMode();"><i class="fa-solid fa-circle-half-stroke"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="javascript:rmf.switchReadMode();"><i class="fa-solid fa-book"></i><span>阅读模式</span></a></div></div></body></html>
